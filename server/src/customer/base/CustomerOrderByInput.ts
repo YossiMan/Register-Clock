@@ -43,7 +43,7 @@ class CustomerOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  eMail?: SortOrder;
+  Email?: SortOrder;
 
   @ApiProperty({
     required: false,

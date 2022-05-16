@@ -47,7 +47,7 @@ class Customer {
   @Field(() => String, {
     nullable: true,
   })
-  eMail!: string | null;
+  Email!: string | null;
 
   @ApiProperty({
     required: true,

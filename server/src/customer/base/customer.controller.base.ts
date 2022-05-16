@@ -53,7 +53,7 @@ export class CustomerControllerBase {
       select: {
         createdAt: true,
         customerName: true,
-        eMail: true,
+        Email: true,
         id: true,
         isBlocked: true,
         updatedAt: true,
@@ -78,7 +78,7 @@ export class CustomerControllerBase {
       select: {
         createdAt: true,
         customerName: true,
-        eMail: true,
+        Email: true,
         id: true,
         isBlocked: true,
         updatedAt: true,
@@ -104,7 +104,7 @@ export class CustomerControllerBase {
       select: {
         createdAt: true,
         customerName: true,
-        eMail: true,
+        Email: true,
         id: true,
         isBlocked: true,
         updatedAt: true,
@@ -139,7 +139,7 @@ export class CustomerControllerBase {
         select: {
           createdAt: true,
           customerName: true,
-          eMail: true,
+          Email: true,
           id: true,
           isBlocked: true,
           updatedAt: true,
@@ -173,7 +173,7 @@ export class CustomerControllerBase {
         select: {
           createdAt: true,
           customerName: true,
-          eMail: true,
+          Email: true,
           id: true,
           isBlocked: true,
           updatedAt: true,

@@ -21,7 +21,7 @@ model User {
 model Customer {
   createdAt    DateTime @default(now())
   customerName String
-  eMail        String?
+  Email        String?
   id           String   @id @default(cuid())
   isBlocked    Boolean?
   orders       Order[]

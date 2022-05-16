@@ -2,7 +2,7 @@ import { OrderCreateNestedManyWithoutCustomersInput } from "./OrderCreateNestedM
 
 export type CustomerCreateInput = {
   customerName: string;
-  eMail?: string | null;
+  Email?: string | null;
   isBlocked?: boolean | null;
   orders?: OrderCreateNestedManyWithoutCustomersInput;
 };

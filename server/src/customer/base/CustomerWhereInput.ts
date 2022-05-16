@@ -39,7 +39,7 @@ class CustomerWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  eMail?: StringNullableFilter;
+  Email?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
