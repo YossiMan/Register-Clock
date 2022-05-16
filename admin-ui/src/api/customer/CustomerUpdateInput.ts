@@ -2,7 +2,7 @@ import { OrderUpdateManyWithoutCustomersInput } from "./OrderUpdateManyWithoutCu
 
 export type CustomerUpdateInput = {
   customerName?: string;
-  eMail?: string | null;
+  Email?: string | null;
   isBlocked?: boolean | null;
   orders?: OrderUpdateManyWithoutCustomersInput;
 };
