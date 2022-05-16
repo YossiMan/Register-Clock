@@ -1,0 +1,316 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input BooleanNullableFilter {
+  equals: Boolean
+  not: Boolean
+}
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+type Customer {
+  Email: String
+  createdAt: DateTime!
+  customerName: String!
+  id: String!
+  isBlocked: Boolean
+  orders(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): [Order!]!
+  updatedAt: DateTime!
+}
+
+input CustomerCreateInput {
+  Email: String
+  customerName: String!
+  isBlocked: Boolean
+  orders: OrderCreateNestedManyWithoutCustomersInput
+}
+
+input CustomerCreateNestedManyWithoutOrdersInput {
+  connect: [CustomerWhereUniqueInput!]
+}
+
+input CustomerListRelationFilter {
+  every: CustomerWhereInput
+  none: CustomerWhereInput
+  some: CustomerWhereInput
+}
+
+input CustomerOrderByInput {
+  Email: SortOrder
+  createdAt: SortOrder
+  customerName: SortOrder
+  id: SortOrder
+  isBlocked: SortOrder
+  updatedAt: SortOrder
+}
+
+input CustomerUpdateInput {
+  Email: String
+  customerName: String
+  isBlocked: Boolean
+  orders: OrderUpdateManyWithoutCustomersInput
+}
+
+input CustomerUpdateManyWithoutOrdersInput {
+  connect: [CustomerWhereUniqueInput!]
+  disconnect: [CustomerWhereUniqueInput!]
+  set: [CustomerWhereUniqueInput!]
+}
+
+input CustomerWhereInput {
+  Email: StringNullableFilter
+  customerName: StringFilter
+  id: StringFilter
+  isBlocked: BooleanNullableFilter
+  orders: OrderListRelationFilter
+}
+
+input CustomerWhereUniqueInput {
+  id: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createCustomer(data: CustomerCreateInput!): Customer!
+  createOrder(data: OrderCreateInput!): Order!
+  createProduct(data: ProductCreateInput!): Product!
+  createUser(data: UserCreateInput!): User!
+  deleteCustomer(where: CustomerWhereUniqueInput!): Customer!
+  deleteOrder(where: OrderWhereUniqueInput!): Order!
+  deleteProduct(where: ProductWhereUniqueInput!): Product!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateCustomer(data: CustomerUpdateInput!, where: CustomerWhereUniqueInput!): Customer!
+  updateOrder(data: OrderUpdateInput!, where: OrderWhereUniqueInput!): Order!
+  updateProduct(data: ProductUpdateInput!, where: ProductWhereUniqueInput!): Product!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Order {
+  createdAt: DateTime!
+  customerId(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): [Customer!]!
+  id: String!
+  productId(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): [Product!]!
+  updatedAt: DateTime!
+}
+
+input OrderCreateInput {
+  customerId: CustomerCreateNestedManyWithoutOrdersInput
+  productId: ProductCreateNestedManyWithoutOrdersInput
+}
+
+input OrderCreateNestedManyWithoutCustomersInput {
+  connect: [OrderWhereUniqueInput!]
+}
+
+input OrderListRelationFilter {
+  every: OrderWhereInput
+  none: OrderWhereInput
+  some: OrderWhereInput
+}
+
+input OrderOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  updatedAt: SortOrder
+}
+
+input OrderUpdateInput {
+  customerId: CustomerUpdateManyWithoutOrdersInput
+  productId: ProductUpdateManyWithoutOrdersInput
+}
+
+input OrderUpdateManyWithoutCustomersInput {
+  connect: [OrderWhereUniqueInput!]
+  disconnect: [OrderWhereUniqueInput!]
+  set: [OrderWhereUniqueInput!]
+}
+
+input OrderWhereInput {
+  customerId: CustomerListRelationFilter
+  id: StringFilter
+  productId: ProductListRelationFilter
+}
+
+input OrderWhereUniqueInput {
+  id: String!
+}
+
+type Product {
+  createdAt: DateTime!
+  id: String!
+  order: Order
+  productName: String
+  serialNumber: String
+  updatedAt: DateTime!
+}
+
+input ProductCreateInput {
+  order: OrderWhereUniqueInput
+  productName: String
+  serialNumber: String
+}
+
+input ProductCreateNestedManyWithoutOrdersInput {
+  connect: [ProductWhereUniqueInput!]
+}
+
+input ProductListRelationFilter {
+  every: ProductWhereInput
+  none: ProductWhereInput
+  some: ProductWhereInput
+}
+
+input ProductOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  orderId: SortOrder
+  productName: SortOrder
+  serialNumber: SortOrder
+  updatedAt: SortOrder
+}
+
+input ProductUpdateInput {
+  order: OrderWhereUniqueInput
+  productName: String
+  serialNumber: String
+}
+
+input ProductUpdateManyWithoutOrdersInput {
+  connect: [ProductWhereUniqueInput!]
+  disconnect: [ProductWhereUniqueInput!]
+  set: [ProductWhereUniqueInput!]
+}
+
+input ProductWhereInput {
+  id: StringFilter
+  order: OrderWhereUniqueInput
+  productName: StringNullableFilter
+  serialNumber: StringNullableFilter
+}
+
+input ProductWhereUniqueInput {
+  id: String!
+}
+
+type Query {
+  _customersMeta(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): MetaQueryPayload!
+  _ordersMeta(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): MetaQueryPayload!
+  _productsMeta(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): MetaQueryPayload!
+  _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
+  customer(where: CustomerWhereUniqueInput!): Customer
+  customers(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): [Customer!]!
+  order(where: OrderWhereUniqueInput!): Order
+  orders(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): [Order!]!
+  product(where: ProductWhereUniqueInput!): Product
+  products(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): [Product!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  createdAt: DateTime!
+  firstName: String
+  id: String!
+  lastName: String
+  roles: [String!]!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  firstName: String
+  lastName: String
+  password: String!
+  roles: [String!]!
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  firstName: SortOrder
+  id: SortOrder
+  lastName: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  firstName: String
+  lastName: String
+  password: String
+  roles: [String!]
+  username: String
+}
+
+input UserWhereInput {
+  firstName: StringNullableFilter
+  id: StringFilter
+  lastName: StringNullableFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
