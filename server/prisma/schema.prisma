@@ -42,6 +42,6 @@ model Product {
   order        Order?   @relation(fields: [orderId], references: [id])
   orderId      String?
   productName  String?
-  serialNumber String?
+  serialNumber Float?
   updatedAt    DateTime @updatedAt
 }

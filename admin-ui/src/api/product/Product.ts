@@ -5,6 +5,6 @@ export type Product = {
   id: string;
   order?: Order | null;
   productName: string | null;
-  serialNumber: string | null;
+  serialNumber: number | null;
   updatedAt: Date;
 };
