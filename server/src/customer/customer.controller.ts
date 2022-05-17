@@ -1,6 +1,6 @@
 
 import { plainToClass, plainToInstance } from "class-transformer";
-
+import { Request } from "express";
 import * as common from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
 import * as nestAccessControl from "nest-access-control";
@@ -22,13 +22,15 @@ export class CustomerController extends CustomerControllerBase {
     super(service, rolesBuilder);
   }
 
+  
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "read",
     possession: "any",
   })
-  @common.Get()
+  
+  @common.Get("yossi")
   @swagger.ApiOkResponse({ type: [Customer] })
   @swagger.ApiForbiddenResponse()
   @ApiNestedQuery(CustomerFindManyArgs)
@@ -47,5 +49,7 @@ export class CustomerController extends CustomerControllerBase {
     });
   }
 
+
+  
 }
 
