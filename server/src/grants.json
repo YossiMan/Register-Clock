@@ -38,12 +38,6 @@
   {
     "role": "user",
     "resource": "Customer",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Customer",
     "action": "update:any",
     "attributes": "*"
   },

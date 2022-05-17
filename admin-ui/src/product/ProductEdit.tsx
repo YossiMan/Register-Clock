@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Edit,
   SimpleForm,
@@ -6,7 +7,9 @@ import {
   ReferenceInput,
   SelectInput,
   TextInput,
+  NumberInput,
 } from "react-admin";
+
 import { OrderTitle } from "../order/OrderTitle";
 
 export const ProductEdit = (props: EditProps): React.ReactElement => {
@@ -17,7 +20,7 @@ export const ProductEdit = (props: EditProps): React.ReactElement => {
           <SelectInput optionText={OrderTitle} />
         </ReferenceInput>
         <TextInput label="Product Name" multiline source="productName" />
-        <TextInput label="Serial Number" source="serialNumber" />
+        <NumberInput label="Serial Number" source="serialNumber" />
       </SimpleForm>
     </Edit>
   );
