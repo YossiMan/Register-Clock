@@ -29,19 +29,46 @@ model Customer {
 }
 
 model Order {
-  createdAt  DateTime   @default(now())
-  customerId Customer[]
-  id         String     @id @default(cuid())
-  productId  Product[]
-  updatedAt  DateTime   @updatedAt
+  createdAt           DateTime   @default(now())
+  customerId          Customer[]
+  id                  String     @id @default(cuid())
+  productSerialNumber Storage[]
+  updatedAt           DateTime   @updatedAt
 }
 
-model Product {
-  createdAt    DateTime @default(now())
-  id           String   @id @default(cuid())
-  order        Order?   @relation(fields: [orderId], references: [id])
-  orderId      String?
-  productName  String?
-  serialNumber Float?
-  updatedAt    DateTime @updatedAt
+model Storage {
+  createdAt        DateTime @default(now())
+  id               String   @id @default(cuid())
+  order            Order?   @relation(fields: [orderId], references: [id])
+  orderId          String?
+  productName      String?
+  productSerialNum Float?
+  updatedAt        DateTime @updatedAt
+}
+
+model Supplier {
+  createdAt    DateTime      @default(now())
+  id           String        @id @default(cuid())
+  supplierName String?
+  supplyOrders SupplyOrder[]
+  updatedAt    DateTime      @updatedAt
+}
+
+model SupplyOrder {
+  createdAt           DateTime  @default(now())
+  id                  String    @id @default(cuid())
+  productSerialNumber String?
+  status              String?
+  supplierId          Supplier? @relation(fields: [supplierIdId], references: [id])
+  supplierIdId        String?
+  updatedAt           DateTime  @updatedAt
+}
+
+model Store {
+  createdAt           DateTime @default(now())
+  id                  String   @id @default(cuid())
+  productName         String?
+  productSerialNumber Float?
+  quantity            Int?
+  updatedAt           DateTime @updatedAt
 }

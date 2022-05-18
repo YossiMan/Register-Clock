@@ -15,7 +15,7 @@ import { CustomerListRelationFilter } from "../../customer/base/CustomerListRela
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { StringFilter } from "../../util/StringFilter";
-import { ProductListRelationFilter } from "../../product/base/ProductListRelationFilter";
+import { StorageListRelationFilter } from "../../storage/base/StorageListRelationFilter";
 @InputType()
 class OrderWhereInput {
   @ApiProperty({
@@ -43,14 +43,14 @@ class OrderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProductListRelationFilter,
+    type: () => StorageListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => ProductListRelationFilter)
+  @Type(() => StorageListRelationFilter)
   @IsOptional()
-  @Field(() => ProductListRelationFilter, {
+  @Field(() => StorageListRelationFilter, {
     nullable: true,
   })
-  productId?: ProductListRelationFilter;
+  productSerialNumber?: StorageListRelationFilter;
 }
 export { OrderWhereInput };

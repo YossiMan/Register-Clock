@@ -30,9 +30,9 @@ import { Order } from "./Order";
 import { CustomerFindManyArgs } from "../../customer/base/CustomerFindManyArgs";
 import { Customer } from "../../customer/base/Customer";
 import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
-import { ProductFindManyArgs } from "../../product/base/ProductFindManyArgs";
-import { Product } from "../../product/base/Product";
-import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueInput";
+import { StorageFindManyArgs } from "../../storage/base/StorageFindManyArgs";
+import { Storage } from "../../storage/base/Storage";
+import { StorageWhereUniqueInput } from "../../storage/base/StorageWhereUniqueInput";
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class OrderControllerBase {
@@ -277,18 +277,18 @@ export class OrderControllerBase {
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @nestAccessControl.UseRoles({
-    resource: "Product",
+    resource: "Storage",
     action: "read",
     possession: "any",
   })
-  @common.Get("/:id/productId")
-  @ApiNestedQuery(ProductFindManyArgs)
-  async findManyProductId(
+  @common.Get("/:id/productSerialNumber")
+  @ApiNestedQuery(StorageFindManyArgs)
+  async findManyProductSerialNumber(
     @common.Req() request: Request,
     @common.Param() params: OrderWhereUniqueInput
-  ): Promise<Product[]> {
-    const query = plainToClass(ProductFindManyArgs, request.query);
-    const results = await this.service.findProductId(params.id, {
+  ): Promise<Storage[]> {
+    const query = plainToClass(StorageFindManyArgs, request.query);
+    const results = await this.service.findProductSerialNumber(params.id, {
       ...query,
       select: {
         createdAt: true,
@@ -301,7 +301,7 @@ export class OrderControllerBase {
         },
 
         productName: true,
-        serialNumber: true,
+        productSerialNum: true,
         updatedAt: true,
       },
     });
@@ -318,13 +318,13 @@ export class OrderControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Post("/:id/productId")
-  async connectProductId(
+  @common.Post("/:id/productSerialNumber")
+  async connectProductSerialNumber(
     @common.Param() params: OrderWhereUniqueInput,
-    @common.Body() body: ProductWhereUniqueInput[]
+    @common.Body() body: StorageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productId: {
+      productSerialNumber: {
         connect: body,
       },
     };
@@ -340,13 +340,13 @@ export class OrderControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Patch("/:id/productId")
-  async updateProductId(
+  @common.Patch("/:id/productSerialNumber")
+  async updateProductSerialNumber(
     @common.Param() params: OrderWhereUniqueInput,
-    @common.Body() body: ProductWhereUniqueInput[]
+    @common.Body() body: StorageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productId: {
+      productSerialNumber: {
         set: body,
       },
     };
@@ -362,13 +362,13 @@ export class OrderControllerBase {
     action: "update",
     possession: "any",
   })
-  @common.Delete("/:id/productId")
-  async disconnectProductId(
+  @common.Delete("/:id/productSerialNumber")
+  async disconnectProductSerialNumber(
     @common.Param() params: OrderWhereUniqueInput,
-    @common.Body() body: ProductWhereUniqueInput[]
+    @common.Body() body: StorageWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productId: {
+      productSerialNumber: {
         disconnect: body,
       },
     };

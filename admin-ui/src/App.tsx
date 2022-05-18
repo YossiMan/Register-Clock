@@ -17,10 +17,22 @@ import { OrderList } from "./order/OrderList";
 import { OrderCreate } from "./order/OrderCreate";
 import { OrderEdit } from "./order/OrderEdit";
 import { OrderShow } from "./order/OrderShow";
-import { ProductList } from "./product/ProductList";
-import { ProductCreate } from "./product/ProductCreate";
-import { ProductEdit } from "./product/ProductEdit";
-import { ProductShow } from "./product/ProductShow";
+import { StorageList } from "./storage/StorageList";
+import { StorageCreate } from "./storage/StorageCreate";
+import { StorageEdit } from "./storage/StorageEdit";
+import { StorageShow } from "./storage/StorageShow";
+import { SupplierList } from "./supplier/SupplierList";
+import { SupplierCreate } from "./supplier/SupplierCreate";
+import { SupplierEdit } from "./supplier/SupplierEdit";
+import { SupplierShow } from "./supplier/SupplierShow";
+import { SupplyOrderList } from "./supplyOrder/SupplyOrderList";
+import { SupplyOrderCreate } from "./supplyOrder/SupplyOrderCreate";
+import { SupplyOrderEdit } from "./supplyOrder/SupplyOrderEdit";
+import { SupplyOrderShow } from "./supplyOrder/SupplyOrderShow";
+import { StoreList } from "./store/StoreList";
+import { StoreCreate } from "./store/StoreCreate";
+import { StoreEdit } from "./store/StoreEdit";
+import { StoreShow } from "./store/StoreShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -69,11 +81,32 @@ const App = (): React.ReactElement => {
           show={OrderShow}
         />
         <Resource
-          name="Product"
-          list={ProductList}
-          edit={ProductEdit}
-          create={ProductCreate}
-          show={ProductShow}
+          name="Storage"
+          list={StorageList}
+          edit={StorageEdit}
+          create={StorageCreate}
+          show={StorageShow}
+        />
+        <Resource
+          name="Supplier"
+          list={SupplierList}
+          edit={SupplierEdit}
+          create={SupplierCreate}
+          show={SupplierShow}
+        />
+        <Resource
+          name="SupplyOrder"
+          list={SupplyOrderList}
+          edit={SupplyOrderEdit}
+          create={SupplyOrderCreate}
+          show={SupplyOrderShow}
+        />
+        <Resource
+          name="Store"
+          list={StoreList}
+          edit={StoreEdit}
+          create={StoreCreate}
+          show={StoreShow}
         />
       </Admin>
     </div>

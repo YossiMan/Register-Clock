@@ -14,7 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { CustomerUpdateManyWithoutOrdersInput } from "./CustomerUpdateManyWithoutOrdersInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { ProductUpdateManyWithoutOrdersInput } from "./ProductUpdateManyWithoutOrdersInput";
+import { StorageUpdateManyWithoutOrdersInput } from "./StorageUpdateManyWithoutOrdersInput";
 @InputType()
 class OrderUpdateInput {
   @ApiProperty({
@@ -31,14 +31,14 @@ class OrderUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProductUpdateManyWithoutOrdersInput,
+    type: () => StorageUpdateManyWithoutOrdersInput,
   })
   @ValidateNested()
-  @Type(() => ProductUpdateManyWithoutOrdersInput)
+  @Type(() => StorageUpdateManyWithoutOrdersInput)
   @IsOptional()
-  @Field(() => ProductUpdateManyWithoutOrdersInput, {
+  @Field(() => StorageUpdateManyWithoutOrdersInput, {
     nullable: true,
   })
-  productId?: ProductUpdateManyWithoutOrdersInput;
+  productSerialNumber?: StorageUpdateManyWithoutOrdersInput;
 }
 export { OrderUpdateInput };
