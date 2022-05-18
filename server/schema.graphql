@@ -78,6 +78,17 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+input FloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
 type MetaQueryPayload {
   count: Float!
 }
@@ -153,14 +164,14 @@ type Product {
   id: String!
   order: Order
   productName: String
-  serialNumber: String
+  serialNumber: Float
   updatedAt: DateTime!
 }
 
 input ProductCreateInput {
   order: OrderWhereUniqueInput
   productName: String
-  serialNumber: String
+  serialNumber: Float
 }
 
 input ProductCreateNestedManyWithoutOrdersInput {
@@ -185,7 +196,7 @@ input ProductOrderByInput {
 input ProductUpdateInput {
   order: OrderWhereUniqueInput
   productName: String
-  serialNumber: String
+  serialNumber: Float
 }
 
 input ProductUpdateManyWithoutOrdersInput {
@@ -198,7 +209,7 @@ input ProductWhereInput {
   id: StringFilter
   order: OrderWhereUniqueInput
   productName: StringNullableFilter
-  serialNumber: StringNullableFilter
+  serialNumber: FloatNullableFilter
 }
 
 input ProductWhereUniqueInput {

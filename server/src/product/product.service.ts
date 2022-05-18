@@ -11,5 +11,6 @@ export class ProductService extends ProductServiceBase {
   async serialNumGenerator(range:number) {
     const Generator = (value: number) => Math.floor(Math.random() * value);
     const random: number = Generator(100000);
+    return random;
   }
 }

@@ -29,12 +29,13 @@ export class CustomerController extends CustomerControllerBase {
     action: "read",
     possession: "any",
   })
-  
+
   @common.Get("yossi")
   @swagger.ApiOkResponse({ type: [Customer] })
   @swagger.ApiForbiddenResponse()
   @ApiNestedQuery(CustomerFindManyArgs)
   async findManyMore(@common.Req() request: Request): Promise<Customer[]> {
+
     const args = plainToInstance(CustomerFindManyArgs, request.query);
     return this.service.findMany({
       ...args,

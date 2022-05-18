@@ -7,6 +7,8 @@ import { ProductControllerBase } from "./base/product.controller.base";
 import { AclValidateRequestInterceptor } from "src/interceptors/aclValidateRequest.interceptor";
 import { Product } from "./base/Product";
 import { ProductCreateInput } from "./base/ProductCreateInput";
+import { AclFilterResponseInterceptor } from "src/interceptors/aclFilterResponse.interceptor";
+import { ProductWhereUniqueInput } from "./base/ProductWhereUniqueInput";
 
 @swagger.ApiTags("products")
 @common.Controller("products")
@@ -25,12 +27,12 @@ export class ProductController extends ProductControllerBase {
     action: "create",
     possession: "any",
   })
-  @common.Post("YossiAharoni")
+  @common.Post("AddNewProduct")
   @swagger.ApiCreatedResponse({ type: Product })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
-  async create(@common.Body() data: ProductCreateInput): Promise<Product> {
-    
-    const numberRange:number = 100000;
+  async createYossiAharoni(@common.Body() data: ProductCreateInput): Promise<Product | null> {
+
+    const numberRange: number = 100000;
     data.serialNumber = await this.service.serialNumGenerator(numberRange)
     return await this.service.create({
       data: {
@@ -38,8 +40,8 @@ export class ProductController extends ProductControllerBase {
 
         order: data.order
           ? {
-              connect: data.order,
-            }
+            connect: data.order,
+          }
           : undefined,
       },
       select: {
@@ -58,6 +60,5 @@ export class ProductController extends ProductControllerBase {
       },
     });
   }
-  
 
 }
