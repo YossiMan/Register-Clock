@@ -27,8 +27,8 @@ import { OrderFindUniqueArgs } from "./OrderFindUniqueArgs";
 import { Order } from "./Order";
 import { CustomerFindManyArgs } from "../../customer/base/CustomerFindManyArgs";
 import { Customer } from "../../customer/base/Customer";
-import { ProductFindManyArgs } from "../../product/base/ProductFindManyArgs";
-import { Product } from "../../product/base/Product";
+import { StorageFindManyArgs } from "../../storage/base/StorageFindManyArgs";
+import { Storage } from "../../storage/base/Storage";
 import { OrderService } from "../order.service";
 
 @graphql.Resolver(() => Order)
@@ -167,17 +167,17 @@ export class OrderResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Product])
+  @graphql.ResolveField(() => [Storage])
   @nestAccessControl.UseRoles({
-    resource: "Product",
+    resource: "Storage",
     action: "read",
     possession: "any",
   })
-  async productId(
+  async productSerialNumber(
     @graphql.Parent() parent: Order,
-    @graphql.Args() args: ProductFindManyArgs
-  ): Promise<Product[]> {
-    const results = await this.service.findProductId(parent.id, args);
+    @graphql.Args() args: StorageFindManyArgs
+  ): Promise<Storage[]> {
+    const results = await this.service.findProductSerialNumber(parent.id, args);
 
     if (!results) {
       return [];

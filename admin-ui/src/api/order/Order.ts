@@ -1,10 +1,10 @@
 import { Customer } from "../customer/Customer";
-import { Product } from "../product/Product";
+import { Storage } from "../storage/Storage";
 
 export type Order = {
   createdAt: Date;
   customerId?: Array<Customer>;
   id: string;
-  productId?: Array<Product>;
+  productSerialNumber?: Array<Storage>;
   updatedAt: Date;
 };

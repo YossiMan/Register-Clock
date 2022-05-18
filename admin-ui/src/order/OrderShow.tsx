@@ -21,9 +21,9 @@ export const OrderShow = (props: ShowProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
-          reference="Product"
+          reference="Storage"
           target="OrderId"
-          label="Products"
+          label="Storages"
         >
           <Datagrid rowClick="show">
             <DateField source="createdAt" label="Created At" />
@@ -32,7 +32,10 @@ export const OrderShow = (props: ShowProps): React.ReactElement => {
               <TextField source={ORDER_TITLE_FIELD} />
             </ReferenceField>
             <TextField label="Product Name" source="productName" />
-            <TextField label="Serial Number" source="serialNumber" />
+            <TextField
+              label="Product Serial Number"
+              source="productSerialNum"
+            />
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
         </ReferenceManyField>

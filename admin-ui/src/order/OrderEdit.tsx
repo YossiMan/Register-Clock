@@ -7,7 +7,7 @@ import {
   SelectArrayInput,
 } from "react-admin";
 import { CustomerTitle } from "../customer/CustomerTitle";
-import { ProductTitle } from "../product/ProductTitle";
+import { StorageTitle } from "../storage/StorageTitle";
 
 export const OrderEdit = (props: EditProps): React.ReactElement => {
   return (
@@ -22,12 +22,12 @@ export const OrderEdit = (props: EditProps): React.ReactElement => {
           <SelectArrayInput optionText={CustomerTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="productId"
-          reference="Product"
+          source="productSerialNumber"
+          reference="Storage"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={ProductTitle} />
+          <SelectArrayInput optionText={StorageTitle} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>

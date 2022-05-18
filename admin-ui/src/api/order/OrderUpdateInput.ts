@@ -1,7 +1,7 @@
 import { CustomerUpdateManyWithoutOrdersInput } from "./CustomerUpdateManyWithoutOrdersInput";
-import { ProductUpdateManyWithoutOrdersInput } from "./ProductUpdateManyWithoutOrdersInput";
+import { StorageUpdateManyWithoutOrdersInput } from "./StorageUpdateManyWithoutOrdersInput";
 
 export type OrderUpdateInput = {
   customerId?: CustomerUpdateManyWithoutOrdersInput;
-  productId?: ProductUpdateManyWithoutOrdersInput;
+  productSerialNumber?: StorageUpdateManyWithoutOrdersInput;
 };

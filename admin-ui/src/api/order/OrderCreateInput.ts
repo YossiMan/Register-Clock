@@ -1,7 +1,7 @@
 import { CustomerCreateNestedManyWithoutOrdersInput } from "./CustomerCreateNestedManyWithoutOrdersInput";
-import { ProductCreateNestedManyWithoutOrdersInput } from "./ProductCreateNestedManyWithoutOrdersInput";
+import { StorageCreateNestedManyWithoutOrdersInput } from "./StorageCreateNestedManyWithoutOrdersInput";
 
 export type OrderCreateInput = {
   customerId?: CustomerCreateNestedManyWithoutOrdersInput;
-  productId?: ProductCreateNestedManyWithoutOrdersInput;
+  productSerialNumber?: StorageCreateNestedManyWithoutOrdersInput;
 };
