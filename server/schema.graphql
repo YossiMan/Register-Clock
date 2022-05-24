@@ -437,6 +437,9 @@ input SupplyOrderWhereUniqueInput {
 type User {
   createdAt: DateTime!
   firstName: String
+  form_1: Boolean
+  form_2: Boolean
+  form_3: Boolean
   id: String!
   lastName: String
   roles: [String!]!
@@ -446,6 +449,9 @@ type User {
 
 input UserCreateInput {
   firstName: String
+  form_1: Boolean
+  form_2: Boolean
+  form_3: Boolean
   lastName: String
   password: String!
   roles: [String!]!
@@ -461,6 +467,9 @@ type UserInfo {
 input UserOrderByInput {
   createdAt: SortOrder
   firstName: SortOrder
+  form_1: SortOrder
+  form_2: SortOrder
+  form_3: SortOrder
   id: SortOrder
   lastName: SortOrder
   password: SortOrder
@@ -471,6 +480,9 @@ input UserOrderByInput {
 
 input UserUpdateInput {
   firstName: String
+  form_1: Boolean
+  form_2: Boolean
+  form_3: Boolean
   lastName: String
   password: String
   roles: [String!]
@@ -479,6 +491,9 @@ input UserUpdateInput {
 
 input UserWhereInput {
   firstName: StringNullableFilter
+  form_1: BooleanNullableFilter
+  form_2: BooleanNullableFilter
+  form_3: BooleanNullableFilter
   id: StringFilter
   lastName: StringNullableFilter
   username: StringFilter
