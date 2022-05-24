@@ -7,4 +7,10 @@ export class SupplierService extends SupplierServiceBase {
   constructor(protected readonly prisma: PrismaService) {
     super(prisma);
   }
+
+  async getIDs(): Promise<string[]> {
+    const result = await this.prisma.supplier.findMany({});
+    const supplierIDs = result.map(item=>item.id);
+    return supplierIDs;
+  }
 }

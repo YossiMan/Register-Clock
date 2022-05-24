@@ -40,7 +40,7 @@ export class OrderController extends OrderControllerBase {
       },
       include: {
         customerId: true,
-        productId: true
+        productSerialNumber: true
       }
     });
     if (result === null) {

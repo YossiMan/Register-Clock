@@ -89,6 +89,17 @@ input FloatNullableFilter {
   notIn: [Float!]
 }
 
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
 type MetaQueryPayload {
   count: Float!
 }
@@ -96,16 +107,25 @@ type MetaQueryPayload {
 type Mutation {
   createCustomer(data: CustomerCreateInput!): Customer!
   createOrder(data: OrderCreateInput!): Order!
-  createProduct(data: ProductCreateInput!): Product!
+  createStorage(data: StorageCreateInput!): Storage!
+  createStore(data: StoreCreateInput!): Store!
+  createSupplier(data: SupplierCreateInput!): Supplier!
+  createSupplyOrder(data: SupplyOrderCreateInput!): SupplyOrder!
   createUser(data: UserCreateInput!): User!
   deleteCustomer(where: CustomerWhereUniqueInput!): Customer!
   deleteOrder(where: OrderWhereUniqueInput!): Order!
-  deleteProduct(where: ProductWhereUniqueInput!): Product!
+  deleteStorage(where: StorageWhereUniqueInput!): Storage!
+  deleteStore(where: StoreWhereUniqueInput!): Store!
+  deleteSupplier(where: SupplierWhereUniqueInput!): Supplier!
+  deleteSupplyOrder(where: SupplyOrderWhereUniqueInput!): SupplyOrder!
   deleteUser(where: UserWhereUniqueInput!): User!
   login(credentials: Credentials!): UserInfo!
   updateCustomer(data: CustomerUpdateInput!, where: CustomerWhereUniqueInput!): Customer!
   updateOrder(data: OrderUpdateInput!, where: OrderWhereUniqueInput!): Order!
-  updateProduct(data: ProductUpdateInput!, where: ProductWhereUniqueInput!): Product!
+  updateStorage(data: StorageUpdateInput!, where: StorageWhereUniqueInput!): Storage!
+  updateStore(data: StoreUpdateInput!, where: StoreWhereUniqueInput!): Store!
+  updateSupplier(data: SupplierUpdateInput!, where: SupplierWhereUniqueInput!): Supplier!
+  updateSupplyOrder(data: SupplyOrderUpdateInput!, where: SupplyOrderWhereUniqueInput!): SupplyOrder!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
 }
 
@@ -113,13 +133,13 @@ type Order {
   createdAt: DateTime!
   customerId(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): [Customer!]!
   id: String!
-  productId(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): [Product!]!
+  productSerialNumber(orderBy: [StorageOrderByInput!], skip: Float, take: Float, where: StorageWhereInput): [Storage!]!
   updatedAt: DateTime!
 }
 
 input OrderCreateInput {
   customerId: CustomerCreateNestedManyWithoutOrdersInput
-  productId: ProductCreateNestedManyWithoutOrdersInput
+  productSerialNumber: StorageCreateNestedManyWithoutOrdersInput
 }
 
 input OrderCreateNestedManyWithoutCustomersInput {
@@ -140,7 +160,7 @@ input OrderOrderByInput {
 
 input OrderUpdateInput {
   customerId: CustomerUpdateManyWithoutOrdersInput
-  productId: ProductUpdateManyWithoutOrdersInput
+  productSerialNumber: StorageUpdateManyWithoutOrdersInput
 }
 
 input OrderUpdateManyWithoutCustomersInput {
@@ -152,81 +172,33 @@ input OrderUpdateManyWithoutCustomersInput {
 input OrderWhereInput {
   customerId: CustomerListRelationFilter
   id: StringFilter
-  productId: ProductListRelationFilter
+  productSerialNumber: StorageListRelationFilter
 }
 
 input OrderWhereUniqueInput {
   id: String!
 }
 
-type Product {
-  createdAt: DateTime!
-  id: String!
-  order: Order
-  productName: String
-  serialNumber: Float
-  updatedAt: DateTime!
-}
-
-input ProductCreateInput {
-  order: OrderWhereUniqueInput
-  productName: String
-  serialNumber: Float
-}
-
-input ProductCreateNestedManyWithoutOrdersInput {
-  connect: [ProductWhereUniqueInput!]
-}
-
-input ProductListRelationFilter {
-  every: ProductWhereInput
-  none: ProductWhereInput
-  some: ProductWhereInput
-}
-
-input ProductOrderByInput {
-  createdAt: SortOrder
-  id: SortOrder
-  orderId: SortOrder
-  productName: SortOrder
-  serialNumber: SortOrder
-  updatedAt: SortOrder
-}
-
-input ProductUpdateInput {
-  order: OrderWhereUniqueInput
-  productName: String
-  serialNumber: Float
-}
-
-input ProductUpdateManyWithoutOrdersInput {
-  connect: [ProductWhereUniqueInput!]
-  disconnect: [ProductWhereUniqueInput!]
-  set: [ProductWhereUniqueInput!]
-}
-
-input ProductWhereInput {
-  id: StringFilter
-  order: OrderWhereUniqueInput
-  productName: StringNullableFilter
-  serialNumber: FloatNullableFilter
-}
-
-input ProductWhereUniqueInput {
-  id: String!
-}
-
 type Query {
   _customersMeta(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): MetaQueryPayload!
   _ordersMeta(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): MetaQueryPayload!
-  _productsMeta(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): MetaQueryPayload!
+  _storagesMeta(orderBy: [StorageOrderByInput!], skip: Float, take: Float, where: StorageWhereInput): MetaQueryPayload!
+  _storesMeta(orderBy: [StoreOrderByInput!], skip: Float, take: Float, where: StoreWhereInput): MetaQueryPayload!
+  _suppliersMeta(orderBy: [SupplierOrderByInput!], skip: Float, take: Float, where: SupplierWhereInput): MetaQueryPayload!
+  _supplyOrdersMeta(orderBy: [SupplyOrderOrderByInput!], skip: Float, take: Float, where: SupplyOrderWhereInput): MetaQueryPayload!
   _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
   customer(where: CustomerWhereUniqueInput!): Customer
   customers(orderBy: [CustomerOrderByInput!], skip: Float, take: Float, where: CustomerWhereInput): [Customer!]!
   order(where: OrderWhereUniqueInput!): Order
   orders(orderBy: [OrderOrderByInput!], skip: Float, take: Float, where: OrderWhereInput): [Order!]!
-  product(where: ProductWhereUniqueInput!): Product
-  products(orderBy: [ProductOrderByInput!], skip: Float, take: Float, where: ProductWhereInput): [Product!]!
+  storage(where: StorageWhereUniqueInput!): Storage
+  storages(orderBy: [StorageOrderByInput!], skip: Float, take: Float, where: StorageWhereInput): [Storage!]!
+  store(where: StoreWhereUniqueInput!): Store
+  stores(orderBy: [StoreOrderByInput!], skip: Float, take: Float, where: StoreWhereInput): [Store!]!
+  supplier(where: SupplierWhereUniqueInput!): Supplier
+  suppliers(orderBy: [SupplierOrderByInput!], skip: Float, take: Float, where: SupplierWhereInput): [Supplier!]!
+  supplyOrder(where: SupplyOrderWhereUniqueInput!): SupplyOrder
+  supplyOrders(orderBy: [SupplyOrderOrderByInput!], skip: Float, take: Float, where: SupplyOrderWhereInput): [SupplyOrder!]!
   user(where: UserWhereUniqueInput!): User
   userInfo: UserInfo!
   users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
@@ -240,6 +212,104 @@ enum QueryMode {
 enum SortOrder {
   Asc
   Desc
+}
+
+type Storage {
+  createdAt: DateTime!
+  id: String!
+  order: Order
+  productName: String
+  productSerialNum: Float
+  updatedAt: DateTime!
+}
+
+input StorageCreateInput {
+  order: OrderWhereUniqueInput
+  productName: String
+  productSerialNum: Float
+}
+
+input StorageCreateNestedManyWithoutOrdersInput {
+  connect: [StorageWhereUniqueInput!]
+}
+
+input StorageListRelationFilter {
+  every: StorageWhereInput
+  none: StorageWhereInput
+  some: StorageWhereInput
+}
+
+input StorageOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  orderId: SortOrder
+  productName: SortOrder
+  productSerialNum: SortOrder
+  updatedAt: SortOrder
+}
+
+input StorageUpdateInput {
+  order: OrderWhereUniqueInput
+  productName: String
+  productSerialNum: Float
+}
+
+input StorageUpdateManyWithoutOrdersInput {
+  connect: [StorageWhereUniqueInput!]
+  disconnect: [StorageWhereUniqueInput!]
+  set: [StorageWhereUniqueInput!]
+}
+
+input StorageWhereInput {
+  id: StringFilter
+  order: OrderWhereUniqueInput
+  productName: StringNullableFilter
+  productSerialNum: FloatNullableFilter
+}
+
+input StorageWhereUniqueInput {
+  id: String!
+}
+
+type Store {
+  createdAt: DateTime!
+  id: String!
+  productName: String
+  productSerialNumber: Float
+  quantity: Float
+  updatedAt: DateTime!
+}
+
+input StoreCreateInput {
+  productName: String
+  productSerialNumber: Float
+  quantity: Float
+}
+
+input StoreOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  productName: SortOrder
+  productSerialNumber: SortOrder
+  quantity: SortOrder
+  updatedAt: SortOrder
+}
+
+input StoreUpdateInput {
+  productName: String
+  productSerialNumber: Float
+  quantity: Float
+}
+
+input StoreWhereInput {
+  id: StringFilter
+  productName: StringNullableFilter
+  productSerialNumber: FloatNullableFilter
+  quantity: IntNullableFilter
+}
+
+input StoreWhereUniqueInput {
+  id: String!
 }
 
 input StringFilter {
@@ -270,6 +340,98 @@ input StringNullableFilter {
   not: String
   notIn: [String!]
   startsWith: String
+}
+
+type Supplier {
+  createdAt: DateTime!
+  id: String!
+  supplierName: String
+  supplyOrders(orderBy: [SupplyOrderOrderByInput!], skip: Float, take: Float, where: SupplyOrderWhereInput): [SupplyOrder!]!
+  updatedAt: DateTime!
+}
+
+input SupplierCreateInput {
+  supplierName: String
+  supplyOrders: SupplyOrderCreateNestedManyWithoutSuppliersInput
+}
+
+input SupplierOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  supplierName: SortOrder
+  updatedAt: SortOrder
+}
+
+input SupplierUpdateInput {
+  supplierName: String
+  supplyOrders: SupplyOrderUpdateManyWithoutSuppliersInput
+}
+
+input SupplierWhereInput {
+  id: StringFilter
+  supplierName: StringNullableFilter
+  supplyOrders: SupplyOrderListRelationFilter
+}
+
+input SupplierWhereUniqueInput {
+  id: String!
+}
+
+type SupplyOrder {
+  createdAt: DateTime!
+  id: String!
+  productSerialNumber: String
+  status: String
+  supplierId: Supplier
+  updatedAt: DateTime!
+}
+
+input SupplyOrderCreateInput {
+  productSerialNumber: String
+  status: String
+  supplierId: SupplierWhereUniqueInput
+}
+
+input SupplyOrderCreateNestedManyWithoutSuppliersInput {
+  connect: [SupplyOrderWhereUniqueInput!]
+}
+
+input SupplyOrderListRelationFilter {
+  every: SupplyOrderWhereInput
+  none: SupplyOrderWhereInput
+  some: SupplyOrderWhereInput
+}
+
+input SupplyOrderOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  productSerialNumber: SortOrder
+  status: SortOrder
+  supplierIdId: SortOrder
+  updatedAt: SortOrder
+}
+
+input SupplyOrderUpdateInput {
+  productSerialNumber: String
+  status: String
+  supplierId: SupplierWhereUniqueInput
+}
+
+input SupplyOrderUpdateManyWithoutSuppliersInput {
+  connect: [SupplyOrderWhereUniqueInput!]
+  disconnect: [SupplyOrderWhereUniqueInput!]
+  set: [SupplyOrderWhereUniqueInput!]
+}
+
+input SupplyOrderWhereInput {
+  id: StringFilter
+  productSerialNumber: StringNullableFilter
+  status: StringNullableFilter
+  supplierId: SupplierWhereUniqueInput
+}
+
+input SupplyOrderWhereUniqueInput {
+  id: String!
 }
 
 type User {
