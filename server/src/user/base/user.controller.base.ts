@@ -50,6 +50,9 @@ export class UserControllerBase {
       select: {
         createdAt: true,
         firstName: true,
+        form_1: true,
+        form_2: true,
+        form_3: true,
         id: true,
         lastName: true,
         roles: true,
@@ -76,6 +79,9 @@ export class UserControllerBase {
       select: {
         createdAt: true,
         firstName: true,
+        form_1: true,
+        form_2: true,
+        form_3: true,
         id: true,
         lastName: true,
         roles: true,
@@ -103,6 +109,9 @@ export class UserControllerBase {
       select: {
         createdAt: true,
         firstName: true,
+        form_1: true,
+        form_2: true,
+        form_3: true,
         id: true,
         lastName: true,
         roles: true,
@@ -139,6 +148,9 @@ export class UserControllerBase {
         select: {
           createdAt: true,
           firstName: true,
+          form_1: true,
+          form_2: true,
+          form_3: true,
           id: true,
           lastName: true,
           roles: true,
@@ -174,6 +186,9 @@ export class UserControllerBase {
         select: {
           createdAt: true,
           firstName: true,
+          form_1: true,
+          form_2: true,
+          form_3: true,
           id: true,
           lastName: true,
           roles: true,

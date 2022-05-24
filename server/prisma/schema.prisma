@@ -10,6 +10,9 @@ generator client {
 model User {
   createdAt DateTime @default(now())
   firstName String?
+  form_1    Boolean?
+  form_2    Boolean?
+  form_3    Boolean?
   id        String   @id @default(cuid())
   lastName  String?
   password  String
